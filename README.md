@@ -20,7 +20,16 @@ For the Chinese version, see [README.zh-CN.md](./README.zh-CN.md).
 
 ## What is FastSlow Evo?
 
-FastSlow Evo is a dual-loop self-evolution system. Its job is simple:
+FastSlow Evo is a dual-loop self-evolution system.
+
+Its core is **not** a Python rule engine.
+Its core is a **skill-driven judgment layer** that helps the host model decide:
+- what deserves a fast local fix
+- what deserves slow durable promotion
+- what should stay under observation
+- what should be ignored as noise
+
+Its job is simple:
 - fix local repeated mistakes quickly
 - promote only proven fixes slowly
 - keep turning local experience into durable capability
@@ -74,7 +83,7 @@ Typical outputs:
 
 FastSlow Evo should not rely only on users explicitly saying "use the fast loop" or "use the slow loop".
 
-It should infer:
+The host model should infer:
 - what deserves a tiny fast fix
 - what should stay under observation
 - what is mature enough for slow-loop promotion
@@ -82,7 +91,7 @@ It should infer:
 
 ### Heartbeat-based promotion monitoring
 
-FastSlow Evo should also monitor recent fast-loop outputs over time and detect when they are becoming promotion candidates.
+FastSlow Evo should also use heartbeat-style review to monitor recent fast-loop outputs over time and detect when they are becoming promotion candidates.
 
 That means heartbeat-like review should inspect:
 - repeated incidents
@@ -93,6 +102,15 @@ That means heartbeat-like review should inspect:
 - regression signals
 
 A validation suite is included so you can test whether this behavior is actually plausible instead of just sounding smart.
+
+## Architecture
+
+FastSlow Evo is designed as:
+- **skill / model layer** for semantic judgment
+- **references / governance layer** for promotion discipline and review rules
+- **scripts / utility layer** for installation, persistence, candidate writing, and fallback tooling
+
+Scripts are helpers, not the primary intelligence.
 
 ---
 
@@ -214,6 +232,9 @@ python3 fastslow.py heartbeat --write-candidates
 ```
 
 ### Unified runtime commands
+
+These commands are **utility helpers**. They are not the core intelligence of FastSlow Evo.
+Use them to persist signals, inspect state, and validate behavior.
 
 Capture a real runtime signal:
 

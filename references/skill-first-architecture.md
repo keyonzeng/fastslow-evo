@@ -1,0 +1,70 @@
+# Skill-First Architecture
+
+FastSlow Evo should be built as a **skill-first, model-first** system.
+
+## Core Principle
+
+Do not make helper scripts the primary intelligence when the host environment already provides model judgment.
+
+In OpenClaw, Claude Code, Cursor, OpenCode, and similar environments:
+- the host model should do semantic routing and evolution judgment
+- the skill should provide the framework, discipline, and evaluation lens
+- scripts should remain mechanical helpers only
+
+## Three Layers
+
+### 1. Skill / Model Layer
+This is the real core.
+
+Responsibilities:
+- detect meaningful signals
+- distinguish fast / slow / observe / ignore
+- evaluate recurrence and stability
+- decide whether to preserve, promote, defer, or ignore
+- review heartbeat signals
+- recommend promotion and rollback paths
+
+### 2. Governance Layer
+This is the discipline layer.
+
+Responsibilities:
+- promotion thresholds
+- validation expectations
+- regression control
+- rollback awareness
+- anti-overfitting rules
+
+This layer should live in:
+- `SKILL.md`
+- `references/`
+- templates and review rules
+
+### 3. Utility Layer
+This is the helper layer.
+
+Responsibilities:
+- install
+- runtime directory init
+- file persistence
+- candidate writing
+- test harnesses
+- fallback behavior if needed
+
+This layer should live in:
+- `scripts/`
+
+## Anti-Pattern
+
+Do not let the project drift into:
+- a Python rule engine with a skill wrapper
+- a script bundle that happens to have a SKILL.md
+- a logging system pretending to be evolution
+
+## FastSlow Evo's Distinct Role
+
+FastSlow Evo is not trying to win by being:
+- the best logger
+- the best memory store
+- the heaviest evolver
+
+It wins by being the judgment layer that decides how experience should move between logging, reflection, memory, and durable promotion.
