@@ -1,6 +1,6 @@
 ---
 name: fastslow-evo
-description: A dual-loop self-evolution skill for AI agents: use fast loops to adapt quickly from local errors, corrections, and repeated work, and use slow loops to validate and promote only durable improvements into higher-order capabilities. Use when building or refining self-evolving agents, capability systems, memory/reflection loops, or improvement workflows that must become both faster to improve and safer to scale. Especially relevant when the user wants rapid self-improvement without uncontrolled drift, and wants repeated local fixes to mature into validated long-term skills, specs, or workflows.
+description: "A dual-loop self-evolution skill for AI agents. Use fast loops to adapt quickly from local errors, corrections, and repeated work, and use slow loops to validate and promote only durable improvements into higher-order capabilities. Use when building or refining self-evolving agents, capability systems, memory/reflection loops, or improvement workflows that must become both faster to improve and safer to scale. Especially relevant when the user wants rapid self-improvement without uncontrolled drift, and wants repeated local fixes to mature into validated long-term skills, specs, or workflows."
 ---
 
 # FastSlow Evo
