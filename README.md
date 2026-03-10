@@ -204,30 +204,39 @@ Read:
 
 Then run one real issue through the fast loop.
 
-### Runtime commands
+### 4-line getting-started path
+
+```bash
+./install.sh
+python3 fastslow.py capture-text "This reply is too formal. Next time make it sound more natural."
+python3 fastslow.py route --latest
+python3 fastslow.py heartbeat --write-candidates
+```
+
+### Unified runtime commands
 
 Capture a real runtime signal:
 
 ```bash
-python3 scripts/capture_runtime.py incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
+python3 fastslow.py capture incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
 ```
 
 Capture directly from a natural-language correction:
 
 ```bash
-python3 scripts/capture_from_text.py "This reply is too formal. Next time make it sound more natural."
+python3 fastslow.py capture-text "This reply is too formal. Next time make it sound more natural."
 ```
 
 Route the latest runtime signal:
 
 ```bash
-python3 scripts/route_runtime.py --latest
+python3 fastslow.py route --latest
 ```
 
 Run heartbeat-style monitoring over runtime evidence:
 
 ```bash
-python3 scripts/heartbeat_runtime.py --write-candidates
+python3 fastslow.py heartbeat --write-candidates
 ```
 
 ### One-command setup / chat-style setup
@@ -235,6 +244,7 @@ python3 scripts/heartbeat_runtime.py --write-candidates
 Command line:
 
 ```bash
+python3 fastslow.py setup
 python3 scripts/chat_setup.py "enable fastslow evo heartbeat"
 ```
 

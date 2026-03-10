@@ -207,30 +207,39 @@ cd my-fastslow-evo
 
 然后拿一个真实问题，先跑一遍快环。
 
-### Runtime 命令
+### 4 行起跑路径
+
+```bash
+./install.sh
+python3 fastslow.py capture-text "这个回复太官方了，下次自然一点。"
+python3 fastslow.py route --latest
+python3 fastslow.py heartbeat --write-candidates
+```
+
+### 统一 runtime 命令
 
 记录一个真实运行信号：
 
 ```bash
-python3 scripts/capture_runtime.py incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
+python3 fastslow.py capture incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
 ```
 
 直接从自然语言纠正中 capture：
 
 ```bash
-python3 scripts/capture_from_text.py "这个回复太官方了，下次自然一点。"
+python3 fastslow.py capture-text "这个回复太官方了，下次自然一点。"
 ```
 
 对最新 runtime 信号做路由判断：
 
 ```bash
-python3 scripts/route_runtime.py --latest
+python3 fastslow.py route --latest
 ```
 
 运行 heartbeat 风格的监控扫描，并写出候选：
 
 ```bash
-python3 scripts/heartbeat_runtime.py --write-candidates
+python3 fastslow.py heartbeat --write-candidates
 ```
 
 ### 一句话 setup / 类聊天 setup
@@ -238,6 +247,7 @@ python3 scripts/heartbeat_runtime.py --write-candidates
 命令行：
 
 ```bash
+python3 fastslow.py setup
 python3 scripts/chat_setup.py "启用 FastSlow Evo heartbeat"
 ```
 

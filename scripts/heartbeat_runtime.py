@@ -30,8 +30,9 @@ def classify(f: Path):
 
 def write_candidate(item):
     PROPOSALS.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now().strftime('%Y%m%d-%H%M%S')
-    out = PROPOSALS / f"candidate-{stamp}.md"
+    stamp = datetime.now().strftime('%Y%m%d-%H%M%S-%f')
+    stem = Path(item['file']).stem
+    out = PROPOSALS / f"candidate-{stamp}-{stem}.md"
     out.write_text(f"# Promotion Candidate\n\n- Source: {item['file']}\n- State: {item['state']}\n- Recurrence: {item['recurrence']}\n", encoding='utf-8')
     return str(out)
 
