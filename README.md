@@ -212,6 +212,26 @@ Read:
 
 Then run one real issue through the fast loop.
 
+### Runtime commands
+
+Capture a real runtime signal:
+
+```bash
+python3 scripts/capture_runtime.py incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
+```
+
+Route the latest runtime signal:
+
+```bash
+python3 scripts/route_runtime.py --latest
+```
+
+Run heartbeat-style monitoring over runtime evidence:
+
+```bash
+python3 scripts/heartbeat_runtime.py
+```
+
 ---
 
 ## How to use it in OpenClaw

@@ -215,6 +215,26 @@ python3 scripts/init_spec_tree.py ./my-agent-specs
 
 然后拿一个真实问题，先跑一遍快环。
 
+### Runtime 命令
+
+记录一个真实运行信号：
+
+```bash
+python3 scripts/capture_runtime.py incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
+```
+
+对最新 runtime 信号做路由判断：
+
+```bash
+python3 scripts/route_runtime.py --latest
+```
+
+运行 heartbeat 风格的监控扫描：
+
+```bash
+python3 scripts/heartbeat_runtime.py
+```
+
 ---
 
 ## 在 OpenClaw 里怎么用
