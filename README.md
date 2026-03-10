@@ -141,9 +141,25 @@ fastslow-evo/
 
 ## Installation
 
-### Option 1 — Install with `npx skills add`
+### Option 1 — One-command install for OpenClaw (recommended)
 
-If you use the Skills installer flow, install from GitHub like this:
+```bash
+git clone https://github.com/keyonzeng/fastslow-evo.git && cd fastslow-evo && ./install.sh
+```
+
+What it does:
+- installs the skill into `~/.openclaw/workspace/skills/fastslow-evo` or confirms it in place
+- creates a runtime workspace under `~/.openclaw/workspace/fastslow/`
+- copies starter templates for incidents, corrections, wins, proposals, and scorecards
+- appends a FastSlow review block to `~/.openclaw/workspace/HEARTBEAT.md`
+
+Then verify:
+
+```bash
+openclaw skills info fastslow-evo
+```
+
+### Option 2 — Install with `npx skills add`
 
 ```bash
 npx skills add https://github.com/keyonzeng/fastslow-evo --skill fastslow-evo
@@ -155,7 +171,7 @@ This is similar to:
 npx skills add https://github.com/vercel-labs/skills --skill find-skills
 ```
 
-### Option 2 — Install from an OpenClaw chat window
+### Option 3 — Install from an OpenClaw chat window
 
 In an OpenClaw channel conversation, send:
 
@@ -163,46 +179,20 @@ In an OpenClaw channel conversation, send:
 安装 https://github.com/keyonzeng/fastslow-evo
 ```
 
-If your OpenClaw setup supports skill installation from chat, this is the most natural path.
-
-### Option 3 — Manual OpenClaw install
-
-If you prefer manual installation, clone the repo into an OpenClaw skill directory:
-
-```bash
-git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/skills/fastslow-evo
-```
-
-Or place it in your workspace skill directory:
+### Option 4 — Manual OpenClaw install
 
 ```bash
 git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/workspace/skills/fastslow-evo
 ```
 
-Then verify:
-
-```bash
-openclaw skills info fastslow-evo
-```
-
-This also prepares the FastSlow runtime workspace and appends a FastSlow review block to `~/.openclaw/workspace/HEARTBEAT.md`.
-
-### Option 4 — Local clone for scripts only
-
-If you only want the files and scripts locally:
+### Option 5 — Local clone for scripts only
 
 ```bash
 git clone https://github.com/keyonzeng/fastslow-evo.git my-fastslow-evo
 cd my-fastslow-evo
 ```
 
-Then run the included scripts directly:
-
-```bash
-python3 scripts/init_spec_tree.py ./my-agent-specs
-```
-
-> Note: using the files locally is not the same as installing the skill into OpenClaw.
+> Note: local files alone are not the same as a full OpenClaw install.
 ---
 
 ## Quick start

@@ -144,9 +144,25 @@ fastslow-evo/
 
 ## 安装方式
 
-### 方式 1 —— 用 `npx skills add` 安装
+### 方式 1 —— 一键安装到 OpenClaw（推荐）
 
-如果你走 Skills 安装流，建议直接这样装：
+```bash
+git clone https://github.com/keyonzeng/fastslow-evo.git && cd fastslow-evo && ./install.sh
+```
+
+它会自动：
+- 安装或就地确认 skill 位于 `~/.openclaw/workspace/skills/fastslow-evo`
+- 创建运行目录 `~/.openclaw/workspace/fastslow/`
+- 放好 incidents / corrections / wins / proposals / scorecards 模板
+- 把 FastSlow review block 追加到 `~/.openclaw/workspace/HEARTBEAT.md`
+
+然后验证：
+
+```bash
+openclaw skills info fastslow-evo
+```
+
+### 方式 2 —— 用 `npx skills add` 安装
 
 ```bash
 npx skills add https://github.com/keyonzeng/fastslow-evo --skill fastslow-evo
@@ -158,7 +174,7 @@ npx skills add https://github.com/keyonzeng/fastslow-evo --skill fastslow-evo
 npx skills add https://github.com/vercel-labs/skills --skill find-skills
 ```
 
-### 方式 2 —— 在 OpenClaw 对话窗口直接安装
+### 方式 3 —— 在 OpenClaw 对话窗口直接安装
 
 如果你的 OpenClaw 支持在聊天里安装 skill，直接发这句话：
 
@@ -166,46 +182,20 @@ npx skills add https://github.com/vercel-labs/skills --skill find-skills
 安装 https://github.com/keyonzeng/fastslow-evo
 ```
 
-这是最自然、最傻瓜的路径。
-
-### 方式 3 —— 手动安装到 OpenClaw
-
-如果你想手动装，把仓库 clone 到 OpenClaw skill 目录：
-
-```bash
-git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/skills/fastslow-evo
-```
-
-或者放到 workspace skill 目录：
+### 方式 4 —— 手动安装到 OpenClaw
 
 ```bash
 git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/workspace/skills/fastslow-evo
 ```
 
-然后验证：
-
-```bash
-openclaw skills info fastslow-evo
-```
-
-同时它还会准备好 FastSlow runtime 目录，并把 FastSlow 的 review block 追加到 `~/.openclaw/workspace/HEARTBEAT.md`。
-
-### 方式 4 —— 只在本地拿文件和脚本
-
-如果你只是想先拿到文件和脚本：
+### 方式 5 —— 只在本地拿文件和脚本
 
 ```bash
 git clone https://github.com/keyonzeng/fastslow-evo.git my-fastslow-evo
 cd my-fastslow-evo
 ```
 
-然后直接使用里面的脚本：
-
-```bash
-python3 scripts/init_spec_tree.py ./my-agent-specs
-```
-
-> 注意：只把文件 clone 到本地，不等于已经安装成 OpenClaw skill。
+> 注意：只把文件 clone 到本地，不等于已经完整安装成 OpenClaw skill。
 ---
 
 ## 快速开始
