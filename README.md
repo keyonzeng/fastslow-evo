@@ -20,19 +20,18 @@ For the Chinese version, see [README.zh-CN.md](./README.zh-CN.md).
 
 ## What is FastSlow Evo?
 
-FastSlow Evo is a dual-loop self-evolution system.
+FastSlow Evo is a dual-loop self-evolution system for AI agents.
+
+Its goal is to drive agent self-evolution through two iterative loops:
+- a **fast loop** for rapid local adaptation
+- a **slow loop** for durable capability promotion
 
 Its core is **not** a Python rule engine.
-Its core is a **skill-driven judgment layer** that helps the host model decide:
-- what deserves a fast local fix
-- what deserves slow durable promotion
-- what should stay under observation
-- what should be ignored as noise
-
-Its job is simple:
-- fix local repeated mistakes quickly
-- promote only proven fixes slowly
-- keep turning local experience into durable capability
+Its core is a **skill-driven evolution framework** that helps the host model:
+- absorb local experience quickly
+- preserve useful signals
+- promote only validated improvements
+- keep capability growth cumulative instead of noisy
 
 ---
 

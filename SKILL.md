@@ -5,10 +5,14 @@ description: "A dual-loop self-evolution skill for AI agents. Use model-driven j
 
 # FastSlow Evo
 
-FastSlow Evo is a **dual-loop self-evolution system**.
+FastSlow Evo is a **dual-loop self-evolution system** for AI agents.
 
-Its job is not to blindly log everything and not to mutate itself recklessly.
-Its job is to decide what should happen to experience.
+Its goal is to drive agent self-evolution through two iterative loops:
+- a **fast loop** for rapid local adaptation
+- a **slow loop** for durable capability promotion
+
+It should not blindly log everything, and it should not mutate itself recklessly.
+It should use these two loops to turn local experience into long-term capability growth.
 
 Every meaningful signal should be handled in one of four ways:
 
