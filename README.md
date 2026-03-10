@@ -115,6 +115,45 @@ fastslow-evo/
 
 ---
 
+## Installation
+
+### Option 1 — Install into OpenClaw
+
+If you want to use FastSlow Evo as an OpenClaw skill, clone or copy it into an OpenClaw skill directory.
+
+#### From GitHub
+```bash
+git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/skills/fastslow-evo
+```
+
+Or place it in your workspace skill directory:
+```bash
+git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/workspace/skills/fastslow-evo
+```
+
+Then verify:
+```bash
+openclaw skills info fastslow-evo
+```
+
+### Option 2 — Use with npx / local clone
+
+If you just want the files and scripts locally:
+
+```bash
+npx degit keyonzeng/fastslow-evo my-fastslow-evo
+cd my-fastslow-evo
+```
+
+Then you can use the included scripts directly:
+```bash
+python3 scripts/init_spec_tree.py ./my-agent-specs
+```
+
+> Note: `npx` does not "install" this as an OpenClaw skill by itself. For OpenClaw usage, place the folder under `~/.openclaw/skills/` or `~/.openclaw/workspace/skills/`.
+
+---
+
 ## Quick start
 
 Read:
