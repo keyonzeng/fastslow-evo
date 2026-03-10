@@ -222,6 +222,12 @@ Capture a real runtime signal:
 python3 scripts/capture_runtime.py incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
 ```
 
+Capture directly from a natural-language correction:
+
+```bash
+python3 scripts/capture_from_text.py "This reply is too formal. Next time make it sound more natural."
+```
+
 Route the latest runtime signal:
 
 ```bash
@@ -231,7 +237,22 @@ python3 scripts/route_runtime.py --latest
 Run heartbeat-style monitoring over runtime evidence:
 
 ```bash
-python3 scripts/heartbeat_runtime.py
+python3 scripts/heartbeat_runtime.py --write-candidates
+```
+
+### One-command setup / chat-style setup
+
+Command line:
+
+```bash
+python3 scripts/chat_setup.py "enable fastslow evo heartbeat"
+```
+
+Equivalent natural-language chat intent:
+
+```text
+配置 FastSlow Evo
+启用 FastSlow Evo heartbeat
 ```
 
 ---

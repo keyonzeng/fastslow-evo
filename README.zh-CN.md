@@ -225,16 +225,37 @@ python3 scripts/init_spec_tree.py ./my-agent-specs
 python3 scripts/capture_runtime.py incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
 ```
 
+直接从自然语言纠正中 capture：
+
+```bash
+python3 scripts/capture_from_text.py "这个回复太官方了，下次自然一点。"
+```
+
 对最新 runtime 信号做路由判断：
 
 ```bash
 python3 scripts/route_runtime.py --latest
 ```
 
-运行 heartbeat 风格的监控扫描：
+运行 heartbeat 风格的监控扫描，并写出候选：
 
 ```bash
-python3 scripts/heartbeat_runtime.py
+python3 scripts/heartbeat_runtime.py --write-candidates
+```
+
+### 一句话 setup / 类聊天 setup
+
+命令行：
+
+```bash
+python3 scripts/chat_setup.py "启用 FastSlow Evo heartbeat"
+```
+
+对应的自然语言意图：
+
+```text
+配置 FastSlow Evo
+启用 FastSlow Evo heartbeat
 ```
 
 ---
