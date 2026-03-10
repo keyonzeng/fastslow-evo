@@ -193,6 +193,102 @@ python3 scripts/init_spec_tree.py ./my-agent-specs
 
 ---
 
+## 在 OpenClaw 里怎么用
+
+FastSlow Evo 不是一个单独启动的 app。
+它是一个 skill：当你要求 agent 通过 fast loop / slow loop 来改进时，它就会被调用。
+
+### 最简单的 3 句触发话术
+
+你在 OpenClaw 对话里直接说：
+
+1. **“这次走 fast loop，给我最小修复。”**
+2. **“这个模式一直重复，走 slow loop。”**
+3. **“你判断该走 fast 还是 slow，并直接执行。”**
+
+### 常见 fast loop 说法
+
+- “以后这种情况这样处理，走 fast loop。”
+- “这个摘要漏了 action item，走 fast loop 修掉。”
+- “这个回复太官方了，走 fast loop 调整。”
+- “你把工具结果读错了，给我最小修复。”
+
+### 常见 slow loop 说法
+
+- “这个问题已经反复出现，走 slow loop。”
+- “把这个重复修复晋升成长期规则。”
+- “这个模式已经稳定了，升级成长期能力。”
+
+---
+
+## 常见使用场景
+
+### 1. 会议摘要总漏 action item
+
+你说：
+
+```text
+这个摘要漏了 action item，走 fast loop，给我最小修复。
+```
+
+预期结果：
+- 更紧的摘要模板
+- action-review checklist
+- 一个小型验证规则
+
+### 2. 回复太官方、太像 AI
+
+你说：
+
+```text
+这个回复太官方了，走 fast loop，让下次更自然。
+```
+
+预期结果：
+- 语气调整
+- 风格 memory rule
+- 模板微调
+
+### 3. 工具结果读错了
+
+你说：
+
+```text
+你把工具结果读错了，走 fast loop，给我最小修复。
+```
+
+预期结果：
+- claim-vs-evidence 检查
+- 小型验证增强
+- 下次总结更保守、更准
+
+### 4. 同类问题反复出现
+
+你说：
+
+```text
+这个问题已经重复出现很多次了，走 slow loop，把修复升级。
+```
+
+预期结果：
+- capability / behavior / validation spec
+- 长期 workflow rule
+- reusable skill 或脚本候选
+
+### 5. 你不知道该走哪条环
+
+你说：
+
+```text
+用 FastSlow Evo 判断这个该走 fast 还是 slow，然后直接执行。
+```
+
+预期结果：
+- router 判断
+- 给出 tiny fix 或 durable promotion 路径
+
+---
+
 ## 示例流程
 
 1. 抓一个真实问题  

@@ -190,6 +190,102 @@ Then run one real issue through the fast loop.
 
 ---
 
+## How to use it in OpenClaw
+
+FastSlow Evo is not a separate app you launch.
+It is a skill that gets used when you ask the agent to improve through the fast loop or slow loop.
+
+### The 3 easiest trigger phrases
+
+Use these directly in an OpenClaw chat:
+
+1. **"Run this through the fast loop and give me the smallest fix."**
+2. **"This pattern keeps recurring — run the slow loop."**
+3. **"You decide whether this should go fast or slow, then execute."**
+
+### Typical fast-loop requests
+
+- "Next time handle this case like this — use the fast loop."
+- "This summary missed an action item. Fix it through the fast loop."
+- "The tone is too formal. Add a tiny fix through the fast loop."
+- "You misread the tool result. Apply the smallest durable fix."
+
+### Typical slow-loop requests
+
+- "This issue has happened several times. Run the slow loop."
+- "Promote this repeated fix into a durable rule."
+- "This pattern is stable now. Turn it into longer-term capability."
+
+---
+
+## Common use cases
+
+### 1. Meeting summaries miss action items
+
+Say:
+
+```text
+This summary missed action items. Run the fast loop and add the smallest fix.
+```
+
+Expected result:
+- tighter summary template
+- action-review checklist
+- tiny validation rule
+
+### 2. Replies sound too formal or generic
+
+Say:
+
+```text
+This reply is too formal. Use the fast loop so next time it sounds more natural.
+```
+
+Expected result:
+- tone adjustment
+- style memory rule
+- smaller writing template tweak
+
+### 3. Tool output was misread
+
+Say:
+
+```text
+You misread the tool result. Apply the smallest durable fix through the fast loop.
+```
+
+Expected result:
+- claim-vs-evidence check
+- tiny validation improvement
+- safer summary behavior next time
+
+### 4. The same issue keeps happening
+
+Say:
+
+```text
+This issue has happened repeatedly. Run the slow loop and promote the fix.
+```
+
+Expected result:
+- capability / behavior / validation spec
+- durable workflow rule
+- reusable skill or script candidate
+
+### 5. You are not sure which loop to use
+
+Say:
+
+```text
+Use FastSlow Evo to decide whether this should go fast or slow, and then act.
+```
+
+Expected result:
+- router decision
+- either a tiny local fix or a durable promotion path
+
+---
+
 ## Example workflow
 
 1. Capture one issue  
