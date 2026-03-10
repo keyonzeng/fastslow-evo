@@ -117,41 +117,66 @@ fastslow-evo/
 
 ## Installation
 
-### Option 1 — Install into OpenClaw
+### Option 1 — Install with `npx skills add`
 
-If you want to use FastSlow Evo as an OpenClaw skill, clone or copy it into an OpenClaw skill directory.
+If you use the Skills installer flow, install from GitHub like this:
 
-#### From GitHub
+```bash
+npx skills add https://github.com/keyonzeng/fastslow-evo --skill fastslow-evo
+```
+
+This is similar to:
+
+```bash
+npx skills add https://github.com/vercel-labs/skills --skill find-skills
+```
+
+### Option 2 — Install from an OpenClaw chat window
+
+In an OpenClaw channel conversation, send:
+
+```text
+安装 https://github.com/keyonzeng/fastslow-evo
+```
+
+If your OpenClaw setup supports skill installation from chat, this is the most natural path.
+
+### Option 3 — Manual OpenClaw install
+
+If you prefer manual installation, clone the repo into an OpenClaw skill directory:
+
 ```bash
 git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/skills/fastslow-evo
 ```
 
 Or place it in your workspace skill directory:
+
 ```bash
 git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/workspace/skills/fastslow-evo
 ```
 
 Then verify:
+
 ```bash
 openclaw skills info fastslow-evo
 ```
 
-### Option 2 — Use with npx / local clone
+### Option 4 — Local clone for scripts only
 
-If you just want the files and scripts locally:
+If you only want the files and scripts locally:
 
 ```bash
-npx degit keyonzeng/fastslow-evo my-fastslow-evo
+git clone https://github.com/keyonzeng/fastslow-evo.git my-fastslow-evo
 cd my-fastslow-evo
 ```
 
-Then you can use the included scripts directly:
+Then run the included scripts directly:
+
 ```bash
 python3 scripts/init_spec_tree.py ./my-agent-specs
 ```
 
-> Note: `npx` does not "install" this as an OpenClaw skill by itself. For OpenClaw usage, place the folder under `~/.openclaw/skills/` or `~/.openclaw/workspace/skills/`.
-
+> Note: using the files locally is not the same as installing the skill into OpenClaw.
 ---
 
 ## Quick start
