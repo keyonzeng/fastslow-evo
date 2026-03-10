@@ -47,19 +47,18 @@ Use if your agent reads sources, summarizes information, or cites evidence.
 
 Start with only 3-5 artifacts from that pack.
 
-## Step 2 — Initialize a working tree
+## Step 2 — Prepare a working space
 
-Run:
+If you are using the OpenClaw install path, the runtime workspace is prepared for you automatically.
 
-```bash
-python3 scripts/init_spec_tree.py ./my-agent-specs
-```
+If you are working outside OpenClaw, prepare a place to store:
+- evidence
+- proposals
+- scorecards
+- durable specs
 
-This creates:
-- `specs/`
-- `evidence/`
-- `proposals/`
-- `scorecards/`
+The important point is not the script itself.
+The important point is that signals, candidates, and durable capability do not get mixed together.
 
 ## Step 3 — Install your first safety layer
 
@@ -74,24 +73,17 @@ Recommended defaults:
 - `specs/behaviors/beh-bounded-execution.example.md`
 - `specs/evolutions/evo-promotion-thresholds.example.md`
 
-## Step 4 — Record a real problem
+## Step 4 — Preserve a real signal
 
-When the agent fails, gets corrected, or succeeds in a reusable way, record it.
+When the agent fails, gets corrected, or succeeds in a reusable way, preserve that signal.
 
-### Fast path
+The important thing is not which helper you use.
+The important thing is that the signal becomes reviewable instead of disappearing into chat history.
 
-Run:
-
-```bash
-python3 scripts/new_gap_entry.py "agent claimed tool success without evidence" --gap validation_gap --source review --task "automation run" --out ./my-agent-specs/evidence/incidents
-```
-
-### Manual path
-
-Use one of these templates:
-- `assets/incident-record.template.md`
-- `assets/correction-record.template.md`
-- `assets/win-record.template.md`
+Use either:
+- a helper script
+- a template
+- or the host environment's own persistence flow
 
 ## Step 5 — Classify the gap
 
@@ -110,20 +102,14 @@ If you are unsure, read:
 
 Do not skip this step. Most messy fixes come from solving the wrong gap.
 
-## Step 6 — Draft the smallest spec delta
+## Step 6 — Draft the smallest durable change
 
 Ask:
 - what rule would have prevented this?
 - does it belong in capability, behavior, or validation?
 - what is the lightest durable fix?
 
-Then draft a proposal.
-
-Run:
-
-```bash
-python3 scripts/build_evolution_proposal.py "tool-faithfulness-hardening" --gap validation_gap --cases 2 --recurrence 2 --spec-type validation --artifact checklist --review L1 --out ./my-agent-specs/proposals
-```
+Then draft a proposal or candidate in the lightest way that keeps it reviewable.
 
 ## Step 7 — Decide how heavy the fix should be
 

@@ -17,15 +17,17 @@ Choose one:
 Do not start by adopting the whole framework.
 Start with 3-5 artifacts from the closest starter pack.
 
-## Step 2 — Initialize the spec tree
+## Step 2 — Prepare a place for evidence and durable learning
 
-Run:
+In OpenClaw, the runtime workspace can be prepared automatically.
 
-```bash
-python3 scripts/init_spec_tree.py <target-path>
-```
+Outside OpenClaw, create a simple place for:
+- evidence
+- proposals
+- scorecards
+- durable specs
 
-This creates the minimal folders for specs, evidence, proposals, and scorecards.
+Do not obsess over tooling first. The critical thing is to separate raw signals from durable policy.
 
 ## Step 3 — Install the first protection layer
 
@@ -47,11 +49,12 @@ For the first few days:
 - record successful repeated patterns
 - classify primary gap type
 
-Use:
-- `assets/incident-record.template.md`
-- `assets/correction-record.template.md`
-- `assets/win-record.template.md`
-- `scripts/new_gap_entry.py`
+Use any lightweight way to preserve:
+- incidents
+- corrections
+- wins
+
+Templates and helper scripts are fine, but they are support tools, not the point of the workflow.
 
 ## Step 5 — Draft only small spec deltas
 
@@ -76,9 +79,11 @@ At the end of the first cycle:
 - choose the smallest durable materialization
 
 Use:
-- `assets/evolution-proposal.template.md`
-- `assets/regression-checklist.template.md`
-- `scripts/recommend_materialization.py`
+- a proposal template
+- a regression checklist
+- the router and review rules
+
+Keep the first review small and practical.
 
 ## Step 7 — Measure before scaling
 

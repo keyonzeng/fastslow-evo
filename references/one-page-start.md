@@ -11,15 +11,19 @@ FastSlow Evo is a dual-loop self-evolution system.
 
 ## Start in 5 steps
 
-### 1. Capture one real issue
-Use an incident, correction, or repeated friction.
+### 1. Notice one real signal
+Use a correction, incident, repeated friction, or a clearly reusable win.
 
-### 2. Route it
+### 2. Let the model route it
 Ask:
 - Is it local, frequent, low-risk, and easy to verify next time?
   - Use **Quick Adapt**
 - Is it recurring across tasks, broader in scope, or higher risk?
   - Use **Slow Promote**
+- Is evidence still weak?
+  - Use **Observe**
+- Is it noise?
+  - Ignore it
 
 ### 3. Apply the smallest fix
 Preferred fast outputs:
@@ -27,10 +31,10 @@ Preferred fast outputs:
 - template
 - memory rule
 - tiny validation rule
-- tiny script
+- small procedural tweak
 
 ### 4. Reuse on the next similar task
-If it helps immediately, keep it.
+If it helps immediately, keep it local and watch it.
 
 ### 5. Promote only after proof
 Promote when:

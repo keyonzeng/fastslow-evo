@@ -4,13 +4,14 @@
 
 FastSlow Evo is now packaged as a usable skill with:
 - a clear dual-loop model
-- fast/slow routing
+- fast/slow/observe/ignore routing
 - quick-adapt and slow-promote workflows
 - starter guides
 - templates
-- scripts
+- helper scripts
 - example specs
 - penetration strategy notes
+- a skill-first / model-first architecture
 
 ## Core claim
 
@@ -28,5 +29,6 @@ Open:
 - `references/one-page-start.md`
 - `references/quick-adapt.md`
 - `references/fast-slow-router.md`
+- `references/skill-first-architecture.md`
 
-Then run one real incident through the fast loop.
+Then use one real signal to exercise the fast loop and the router.
