@@ -92,6 +92,8 @@ That means heartbeat-like review should inspect:
 - cross-context stability
 - regression signals
 
+A validation suite is included so you can test whether this behavior is actually plausible instead of just sounding smart.
+
 ---
 
 ## What FastSlow Evo is good for

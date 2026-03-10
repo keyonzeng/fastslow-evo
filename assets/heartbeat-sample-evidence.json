@@ -1,0 +1,44 @@
+{
+  "patterns": [
+    {
+      "id": "pat-action-items",
+      "tiny_fix": "action-review checklist",
+      "incidents": 3,
+      "corrections": 2,
+      "wins": 3,
+      "cross_context": true,
+      "regressions": 0,
+      "expected": "promote-candidate"
+    },
+    {
+      "id": "pat-tone-formality",
+      "tiny_fix": "tone style memory rule",
+      "incidents": 1,
+      "corrections": 1,
+      "wins": 2,
+      "cross_context": false,
+      "regressions": 0,
+      "expected": "stay-fast"
+    },
+    {
+      "id": "pat-overfit-format",
+      "tiny_fix": "narrow formatting tweak",
+      "incidents": 2,
+      "corrections": 3,
+      "wins": 0,
+      "cross_context": false,
+      "regressions": 2,
+      "expected": "rollback-candidate"
+    },
+    {
+      "id": "pat-weak-signal",
+      "tiny_fix": "none",
+      "incidents": 1,
+      "corrections": 0,
+      "wins": 0,
+      "cross_context": false,
+      "regressions": 0,
+      "expected": "noise"
+    }
+  ]
+}

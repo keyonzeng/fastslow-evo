@@ -1,0 +1,68 @@
+[
+  {
+    "id": "fast-1-tone-correction",
+    "summary": "Reply sounded too formal once; user asked for a more natural tone next time.",
+    "recurrence": 1,
+    "blast_radius": "low",
+    "validation": "easy",
+    "risk": "low",
+    "reuse": "medium",
+    "correction_density": "medium",
+    "expected": "fast"
+  },
+  {
+    "id": "fast-2-summary-action-item",
+    "summary": "Meeting summary missed an action item and can be fixed with a checklist.",
+    "recurrence": 2,
+    "blast_radius": "low",
+    "validation": "easy",
+    "risk": "low",
+    "reuse": "high",
+    "correction_density": "medium",
+    "expected": "fast"
+  },
+  {
+    "id": "slow-1-repeated-validation-gap",
+    "summary": "Tool execution was overclaimed across 4 similar tasks; a stronger validation rule is needed.",
+    "recurrence": 4,
+    "blast_radius": "medium",
+    "validation": "moderate",
+    "risk": "medium",
+    "reuse": "high",
+    "correction_density": "high",
+    "expected": "slow"
+  },
+  {
+    "id": "slow-2-boundary-policy",
+    "summary": "Shared/private context boundary confusion appeared across multiple channels and needs durable behavior policy.",
+    "recurrence": 3,
+    "blast_radius": "high",
+    "validation": "moderate",
+    "risk": "high",
+    "reuse": "high",
+    "correction_density": "high",
+    "expected": "slow"
+  },
+  {
+    "id": "observe-1-ambiguous-preference",
+    "summary": "User said one output felt a bit off, but no stable pattern is clear yet.",
+    "recurrence": 1,
+    "blast_radius": "low",
+    "validation": "hard",
+    "risk": "low",
+    "reuse": "low",
+    "correction_density": "low",
+    "expected": "observe"
+  },
+  {
+    "id": "ignore-1-noise",
+    "summary": "One isolated annoyance with no clear reusable lesson or durable fix.",
+    "recurrence": 1,
+    "blast_radius": "low",
+    "validation": "hard",
+    "risk": "low",
+    "reuse": "low",
+    "correction_density": "low",
+    "expected": "ignore"
+  }
+]
