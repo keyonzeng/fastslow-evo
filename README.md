@@ -70,6 +70,28 @@ Typical outputs:
 - workflow rule
 - reusable skill or script
 
+### Intelligent routing
+
+FastSlow Evo should not rely only on users explicitly saying "use the fast loop" or "use the slow loop".
+
+It should infer:
+- what deserves a tiny fast fix
+- what should stay under observation
+- what is mature enough for slow-loop promotion
+- what is just noise
+
+### Heartbeat-based promotion monitoring
+
+FastSlow Evo should also monitor recent fast-loop outputs over time and detect when they are becoming promotion candidates.
+
+That means heartbeat-like review should inspect:
+- repeated incidents
+- repeated corrections
+- repeated wins
+- reuse of tiny fixes
+- cross-context stability
+- regression signals
+
 ---
 
 ## What FastSlow Evo is good for

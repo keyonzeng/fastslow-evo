@@ -73,6 +73,28 @@ FastSlow Evo 聚焦一个更有价值的问题：
 - workflow rule
 - 可复用 skill 或脚本
 
+### 智能判断
+
+FastSlow Evo 不应该只依赖用户显式说“走 fast loop”或“走 slow loop”。
+
+它应该默认具备判断能力：
+- 什么只值得一个 tiny fast fix
+- 什么应该继续观察
+- 什么已经成熟到值得进入 slow loop
+- 什么其实只是噪音
+
+### 基于 heartbeat 的晋升监控
+
+FastSlow Evo 还应该持续监控 fast loop 的产物，看它们是否正在成熟为 promote 候选。
+
+也就是 heartbeat 不只看消息或任务，还应该看：
+- 重复 incident
+- 重复 correction
+- 重复 win
+- tiny fix 的复用情况
+- 跨场景稳定性
+- regression 信号
+
 ---
 
 ## 它适合解决什么问题？

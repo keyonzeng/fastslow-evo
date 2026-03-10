@@ -52,6 +52,19 @@ Typical outputs:
 If unsure, start with the fast loop.
 Only promote slowly after recurrence, validation, and regression checks.
 
+## Intelligent Routing
+
+FastSlow Evo should infer the right loop by default.
+User instruction can override, but the system should still reason about whether the requested loop is appropriate.
+
+Read `references/router-intelligence.md` when the task is to decide automatically whether a signal should go to fast execution, slow promotion, observation, or noise.
+
+## Heartbeat Monitoring
+
+FastSlow Evo should use heartbeat-style monitoring to observe whether fast-loop fixes are maturing into slow-loop promotion candidates.
+
+Read `references/heartbeat-monitor.md` when the task is to inspect recent incidents, corrections, wins, and tiny fixes over time.
+
 ## First files to read
 
 - `references/one-page-start.md`
@@ -330,6 +343,8 @@ Read only as needed:
 - `references/openclaw-user-penetration.md`
 - `references/one-page-start.md`
 - `references/release-notes.md`
+- `references/router-intelligence.md`
+- `references/heartbeat-monitor.md`
 
 ## Execution Standard
 
