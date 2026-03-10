@@ -158,6 +158,7 @@ Ask:
 - what happened?
 - why does it matter?
 - is it local or broad?
+- is it a correction, incident, win, or weak signal?
 
 ### Step 2 — Route it
 Choose one:
@@ -183,6 +184,32 @@ Fast loop outputs should be monitored to see whether they:
 - deserve promotion
 - should be rolled back
 
+## Default Handling by Signal Type
+
+### User correction
+Default behavior:
+- treat as high-value signal
+- infer whether the correction is stylistic, behavioral, workflow-related, validation-related, or boundary-related
+- prefer `fast` unless recurrence or scope suggests otherwise
+- preserve a small record if the correction is likely to matter again
+
+### Incident / failure
+Default behavior:
+- determine whether the problem is operational, behavioral, validation-related, or environmental
+- prefer `fast` for local repairable issues
+- prefer `slow` or `observe` when the same class of failure keeps recurring or changes broader capability boundaries
+
+### Win / successful workaround
+Default behavior:
+- do not automatically promote a single success into durable policy
+- check whether the same success pattern is reused across tasks
+- keep as `fast` or `observe` until reuse becomes meaningful
+
+### Weak or ambiguous signal
+Default behavior:
+- prefer `observe`
+- avoid forcing a policy from unclear evidence
+
 ## Heartbeat Responsibility
 
 Heartbeat is not just for checking inboxes or calendar.
@@ -201,6 +228,19 @@ Heartbeat should classify patterns as:
 - `promote-candidate`
 - `rollback-candidate`
 - `noise`
+
+## Default Heartbeat Workflow
+
+When FastSlow Evo is invoked during a heartbeat-style review, the host model should:
+
+1. inspect recent evidence and tiny fixes
+2. look for recurrence and stability
+3. identify patterns that remain local vs patterns that are maturing
+4. nominate at most a small number of good candidates
+5. avoid promoting everything just because evidence exists
+6. stay quiet when there is no meaningful evolution signal
+
+Heartbeat should behave like a reviewer, not like an autonomous mutator.
 
 ## Promotion Discipline
 
@@ -276,6 +316,36 @@ In OpenClaw, this skill should help the model do three things well:
 
 If the user asks to configure FastSlow Evo, enable heartbeat review, or start using the runtime helpers, use the provided helper scripts as mechanical support.
 But keep the actual routing and promotion judgment model-driven.
+
+## Default OpenClaw Triggers
+
+When users say things like:
+- "记住这个修正"
+- "以后这种情况这样做"
+- "这个问题老是重复"
+- "你判断该 fast 还是 slow"
+- "启用 FastSlow Evo"
+- "启用 FastSlow Evo heartbeat"
+
+FastSlow Evo should treat these as likely evolution intents.
+
+### Suggested default responses
+
+- If the user is correcting a local issue, prefer fast-loop handling.
+- If the user indicates recurrence or repeated frustration, evaluate for slow-loop candidacy.
+- If the user asks for setup or heartbeat enablement, use helper scripts to prepare the runtime environment.
+- If the signal is weak, explain that you are observing rather than promoting.
+
+## Scripts Are Fallback, Not Brain
+
+The helper scripts exist to:
+- initialize runtime state
+- write evidence files
+- write promotion candidates
+- support testing and validation
+- provide fallback mechanical support
+
+They should not replace semantic judgment in environments that already provide model reasoning.
 
 ## First Files to Read
 

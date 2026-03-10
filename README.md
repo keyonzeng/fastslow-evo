@@ -274,6 +274,10 @@ Equivalent natural-language chat intent:
 ```text
 配置 FastSlow Evo
 启用 FastSlow Evo heartbeat
+记住这个修正
+以后这种情况这样做
+这个问题老是重复
+你判断该 fast 还是 slow
 ```
 
 ---
