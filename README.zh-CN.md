@@ -115,6 +115,16 @@ FastSlow Evo 的合理架构是：
 
 脚本只是辅助，不是主脑。
 
+### 什么时候该用 helper 脚本
+
+脚本适合用来：
+- 安装或配置 runtime
+- 把已经判断过的有效 signal 落盘
+- 在 heartbeat / review 之后写出 promotion candidate
+- 做机械化测试与验证
+
+不要把脚本当成语义判断的替代品。
+
 ---
 
 ## 它适合解决什么问题？

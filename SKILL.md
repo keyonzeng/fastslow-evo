@@ -347,6 +347,39 @@ The helper scripts exist to:
 
 They should not replace semantic judgment in environments that already provide model reasoning.
 
+## When to Call Helpers
+
+Use helper scripts only when they reduce mechanical friction without replacing judgment.
+
+### Call install/setup helpers when:
+- the user explicitly asks to install or configure FastSlow Evo
+- runtime directories do not exist yet
+- heartbeat review has not been prepared yet
+- the task is clearly environment setup, not semantic judgment
+
+### Call persistence helpers when:
+- a correction, incident, or win has already been judged worth preserving
+- a small record should be written for later comparison
+- the model has already decided on `fast`, `slow`, or `observe`
+
+### Call candidate-writing helpers when:
+- heartbeat or review has already identified a real promotion candidate
+- the pattern has enough recurrence to justify reviewable persistence
+- writing the file helps future review rather than replacing it
+
+### Do not call helpers when:
+- the signal is still too weak and should remain `observe`
+- the event is noise and should be ignored
+- the only thing missing is semantic interpretation
+- a script would be used to avoid making a real judgment
+
+### Default principle
+
+Think first, write second.
+
+Use the model to decide.
+Use the helper only to persist or operationalize what has already been decided.
+
 ## First Files to Read
 
 Use these references as needed:

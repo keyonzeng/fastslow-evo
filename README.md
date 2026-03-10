@@ -112,6 +112,16 @@ FastSlow Evo is designed as:
 
 Scripts are helpers, not the primary intelligence.
 
+### When helpers should be used
+
+Use scripts when you need to:
+- install or configure the runtime
+- persist a signal that has already been judged meaningful
+- write a promotion candidate after heartbeat or review
+- test or validate the loop mechanically
+
+Do not use scripts as a substitute for semantic judgment.
+
 ---
 
 ## What FastSlow Evo is good for
