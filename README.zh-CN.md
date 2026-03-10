@@ -188,6 +188,8 @@ git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/workspace/sk
 openclaw skills info fastslow-evo
 ```
 
+同时它还会准备好 FastSlow runtime 目录，并把 FastSlow 的 review block 追加到 `~/.openclaw/workspace/HEARTBEAT.md`。
+
 ### 方式 4 —— 只在本地拿文件和脚本
 
 如果你只是想先拿到文件和脚本：

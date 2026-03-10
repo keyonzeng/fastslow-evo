@@ -185,6 +185,8 @@ Then verify:
 openclaw skills info fastslow-evo
 ```
 
+This also prepares the FastSlow runtime workspace and appends a FastSlow review block to `~/.openclaw/workspace/HEARTBEAT.md`.
+
 ### Option 4 — Local clone for scripts only
 
 If you only want the files and scripts locally:
