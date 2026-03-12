@@ -1,8 +1,9 @@
 # Step-by-Step User Guide
 
 Read `one-page-start.md` first if you want the shortest path.
+If you want the most directly usable path, read `minimal-usable-workflow.md` first.
 
-This guide is for real first use, not for framework study.
+This guide is for real first use, not framework admiration.
 
 ## What this skill is
 
@@ -14,9 +15,9 @@ It does this with two loops:
 
 Together they turn repeated problems into:
 - evidence
-- gap classification
+- review judgments
 - tiny fixes
-- spec deltas
+- candidate convergence
 - validated improvements
 
 ## What to expect
@@ -24,167 +25,102 @@ Together they turn repeated problems into:
 You do **not** need to adopt the whole system on day one.
 
 The best first run is:
-- one starter pack
-- one or two real incidents
-- one proposal
+- one or two real evidence records
+- one review pass
 - one small improvement
+- one candidate only if justified
 
-## Step 1 — Pick your starter pack
+## Step 1 — Prepare the working shape
 
-Choose the closest fit:
+If you are using the OpenClaw install path, run:
 
-### Coding agent
-Use if your agent writes code, runs tools, or delegates technical tasks.
+```bash
+./install.sh
+```
 
-### Workflow automation agent
-Use if your agent sends messages, updates systems, moves data, or runs business flows.
-
-### Support / concierge agent
-Use if your agent handles user context, preferences, or repeated support interactions.
-
-### Research agent
-Use if your agent reads sources, summarizes information, or cites evidence.
-
-Start with only 3-5 artifacts from that pack.
-
-## Step 2 — Prepare a working space
-
-If you are using the OpenClaw install path, the runtime workspace is prepared for you automatically.
-
-If you are working outside OpenClaw, prepare a place to store:
-- evidence
+That prepares:
+- runtime evidence folders
 - proposals
 - scorecards
 - durable specs
+- starter templates
 
-The important point is not the script itself.
-The important point is that signals, candidates, and durable capability do not get mixed together.
-
-## Step 3 — Install your first safety layer
-
-Before trying “self-improvement”, add these first:
-
-1. one validation spec
-2. one bounded execution or memory-safety behavior spec
-3. one promotion-threshold rule
-
-Recommended defaults:
-- `specs/validations/val-tool-faithfulness.example.md`
-- `specs/behaviors/beh-bounded-execution.example.md`
-- `specs/evolutions/evo-promotion-thresholds.example.md`
-
-## Step 4 — Preserve a real signal
+## Step 2 — Preserve one real signal
 
 When the agent fails, gets corrected, or succeeds in a reusable way, preserve that signal.
 
-The important thing is not which helper you use.
-The important thing is that the signal becomes reviewable instead of disappearing into chat history.
+Use the markdown templates.
+The important point is that the signal becomes reviewable instead of disappearing into chat history.
 
-Use either:
-- a helper script
-- a template
-- or the host environment's own persistence flow
+## Step 3 — Read the review stack before judging
 
-## Step 5 — Classify the gap
+For a normal evidence review, read:
+1. `references/runtime-optional/openclaw-judgment-first.md`
+2. `references/runtime-branches/evidence-protocol.md`
+3. `references/runtime-core/review-protocol.md`
+4. `references/runtime-core/evaluation-rubric.md`
+5. the evidence file
+6. `references/runtime-core/review-output-format.md`
 
-Choose one primary gap type:
-- capability_gap
-- behavior_gap
-- validation_gap
-- retrieval_gap
-- workflow_gap
-- safety_gap
-- tooling_gap
-- scope_gap
+If candidate sameness is in question, also read:
+- `references/runtime-branches/candidate-protocol.md`
+- `references/runtime-branches/candidate-review-checklist.md`
 
-If you are unsure, read:
-- `references/gap-taxonomy.md`
+## Step 4 — Make the judgment explicitly
 
-Do not skip this step. Most messy fixes come from solving the wrong gap.
+Choose one state:
+- fast
+- slow-candidate
+- observe
+- ignore
+- reject
 
-## Step 6 — Draft the smallest durable change
+Do not skip the reasoning.
+Explain:
+- what happened
+- why it matters
+- why this is or is not the same pattern as prior evidence
+- what should happen next
 
-Ask:
-- what rule would have prevented this?
-- does it belong in capability, behavior, or validation?
-- what is the lightest durable fix?
-
-Then draft a proposal or candidate in the lightest way that keeps it reviewable.
-
-## Step 7 — Decide how heavy the fix should be
-
-Do **not** jump straight to a new skill or code change.
-
-Use the recommender:
-
-```bash
-python3 scripts/recommend_materialization.py --gap validation_gap --recurrence 2 --risk medium
-```
-
-Typical outputs:
-- checklist
-- curated-memory
-- script
-- skill
-
-## Step 8 — Review before promotion
-
-Before making the change durable, use:
-- `references/spec-review-checklist.md`
-
-Check:
-- is it evidence-backed?
-- is it testable?
-- is it too heavy?
-- is rollback practical?
-
-## Step 9 — Apply one small durable improvement
+## Step 5 — Apply the smallest justified next step
 
 Good first improvements are:
 - a validation checklist
 - a memory rule
 - a behavior rule
-- a script for a repeated deterministic task
+- a template refinement
+- one candidate update
 
 Bad first improvements are:
 - rewriting the whole system
 - adding many specs at once
-- self-modifying automation in production
+- promoting thin evidence into durable policy
 
-## Step 10 — Measure if it actually helped
+## Step 6 — Review again only when needed
 
-Use:
-- `assets/scorecard.template.md`
-
-Track:
-- recurrence before/after
-- user corrections before/after
-- regressions introduced
-- time saved
-
-If the metric does not improve, do not add more structure. Fix the weak spec.
+If more evidence appears, review again.
+If not, do not force extra structure.
 
 ## Good adoption pattern
 
 Week 1:
-- 3-5 evidence records
-- 1 starter pack
-- 1 proposal
+- 2-5 evidence records
+- 1-2 clear review passes
 - 1 small durable fix
+- at most 1 candidate if clearly justified
 
 Week 2:
 - review recurrence
-- add one more validation or behavior spec if needed
-- only then consider scripts or a skill-level upgrade
+- split or reject weak candidates if needed
+- only then consider heavier durable artifacts
 
 ## Common mistakes
 
-- adopting the full framework immediately
 - promoting one-off incidents into permanent rules
 - treating fluent text as proof of execution
-- storing untrusted content as durable memory
+- treating symptom overlap as proof of same-pattern
 - skipping rollback planning
-- adding a skill when a checklist would solve it
+- adding a heavy artifact when a checklist would solve it
 
 ## Rule of thumb
 

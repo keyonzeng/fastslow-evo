@@ -47,7 +47,7 @@ Why:
 - failure signals are frequent and visible
 - repeated workflows produce clear recurrence patterns
 - tiny fixes create immediate value
-- promotion into scripts/skills/workflows is natural
+- promotion into reusable skills, workflow rules, and durable capabilities is natural
 
 These users benefit most from:
 - fast hardening after tool and workflow failures

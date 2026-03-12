@@ -4,12 +4,13 @@ FastSlow Evo should be built as a **skill-first, model-first** system.
 
 ## Core Principle
 
-Do not make helper scripts the primary intelligence when the host environment already provides model judgment.
+Do not move primary intelligence away from the host model when the host environment already provides strong judgment.
 
 In OpenClaw, Claude Code, Cursor, OpenCode, and similar environments:
 - the host model should do semantic routing and evolution judgment
 - the skill should provide the framework, discipline, and evaluation lens
-- scripts should remain mechanical helpers only
+- markdown protocols should constrain and structure the judgment
+- installation and file setup should remain mechanical only
 
 ## Three Layers
 
@@ -18,9 +19,9 @@ This is the real core.
 
 Responsibilities:
 - detect meaningful signals
-- distinguish fast / slow / observe / ignore
+- distinguish fast / slow / observe / ignore / reject
 - evaluate recurrence and stability
-- decide whether to preserve, promote, defer, or ignore
+- decide whether to preserve, promote, defer, split, or ignore
 - review heartbeat signals
 - recommend promotion and rollback paths
 
@@ -28,6 +29,8 @@ Responsibilities:
 This is the discipline layer.
 
 Responsibilities:
+- evidence-writing rules
+- convergence rules
 - promotion thresholds
 - validation expectations
 - regression control
@@ -40,24 +43,24 @@ This layer should live in:
 - templates and review rules
 
 ### 3. Utility Layer
-This is the helper layer.
+This is the utility layer.
 
 Responsibilities:
 - install
 - runtime directory init
-- file persistence
-- candidate writing
-- test harnesses
-- fallback behavior if needed
+- markdown template copying
+- simple operational setup
 
 This layer should live in:
-- `scripts/`
+- `install.sh`
+- templates
+- workspace layout
 
 ## Anti-Pattern
 
 Do not let the project drift into:
 - a Python rule engine with a skill wrapper
-- a script bundle that happens to have a SKILL.md
+- a mechanical utility layer pretending to be the judgment layer
 - a logging system pretending to be evolution
 
 ## FastSlow Evo's Distinct Role

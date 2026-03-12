@@ -1,478 +1,134 @@
 # FastSlow Evo
 
-**一个面向 AI Agent 的双环自我进化系统。**
+**FastSlow Evo 是一个面向 AI Agent 的双循环自我进化系统。**
 
-FastSlow Evo 帮助 Agent 用正确的速度进化：
+它通过两个不同时间尺度的循环，让智能体在真实使用中持续变好：
 
-- **快环**：快速修正局部、重复出现的问题
-- **慢环**：把经过验证的改进晋升为长期能力
+- **快循环**：处理局部、小而高频、低风险、容易验证的问题
+- **慢循环**：处理重复出现、跨上下文稳定、值得长期沉淀的问题
 
-它既避免把每次失败都升级成大而重的规则系统，也避免把每次有效修复都困在本地 hack 里。
+FastSlow Evo 不是日志系统，不是 Python 规则引擎，也不是黑箱式自我修改工具。
 
-```text
-FAST LOOP: observe -> classify -> tiny fix -> reuse
-SLOW LOOP: validate -> promote -> standardize -> measure
-```
+它的核心任务是帮助智能体判断：
 
-英文版请看 [README.md](./README.md)。
+- 什么该马上修
+- 什么该慢慢升
+- 什么该继续观察
+- 什么该忽略
+- 什么该明确驳回
 
----
+在 OpenClaw 中，FastSlow Evo 依赖：
 
-## FastSlow Evo 是什么？
+- 来自 incident / correction / win 的真实 evidence
+- OpenClaw 主模型的语义判断
+- markdown 协议提供的审查纪律、收敛规则、验证要求和回滚约束
 
-FastSlow Evo 是一个面向 AI 智能体的双环自我进化系统。
+它的目标，是避免两种常见失败：
 
-它的目标，是通过两个持续迭代的环来驱动智能体进化：
-- **fast loop**：快速局部适应
-- **slow loop**：长期能力晋升
+- **under-evolution**：有价值经验没有沉淀成能力
+- **over-evolution**：局部噪音被过早固化成长期规则
 
-它的核心**不是** Python 规则引擎。
-它的核心是一个 **skill 驱动的进化框架**，帮助宿主模型：
-- 快速吸收局部经验
-- 保留真正有用的信号
-- 只晋升经过验证的改进
-- 让能力增长是累积的，而不是噪音堆积
+### 一句话说明
 
----
-
-## 为什么要做这个项目？
-
-大多数“自我改进 agent”系统只做对了一部分：
-- 有些只会记录问题，却不会沉淀成能力
-- 有些有记忆，却不知道什么值得晋升
-- 有些会反思，却产不出可复用工件
-- 有些又太快走向不安全的自我修改
-
-FastSlow Evo 聚焦一个更有价值的问题：
-
-> **什么应该快速修正，什么必须慢速晋升？**
+**FastSlow Evo 是一个以判断为中控、以双循环为机制、以自我进化为目标的 Agent 能力系统。**
 
 ---
 
-## 核心思想
+## 仓库现在包含什么
 
-### 快环 — Quick Adapt
+- `SKILL.md` —— OpenClaw 的操作说明
+- `references/` —— 协议、rubric、阅读顺序、示例、最小可用工作流
+- `assets/` —— markdown 模板
+- `specs/` —— 示例化的长期工件
 
-适用于：
-- 局部问题
-- 高频问题
-- 影响面小
-- 下一次就容易验证
-
-常见产物：
-- checklist
-- 模板微调
-- memory rule
-- 小型验证规则
-- 小脚本
-
-### 慢环 — Slow Promote
-
-适用于：
-- 某个局部修复已经被证明有效
-- 同类模式跨任务重复出现
-- 涉及更广泛的行为、能力或工作流边界
-
-常见产物：
-- capability spec
-- behavior spec
-- validation spec
-- evolution rule
-- workflow rule
-- 可复用 skill 或脚本
-
-### 智能判断
-
-FastSlow Evo 不应该只依赖用户显式说“走 fast loop”或“走 slow loop”。
-
-宿主模型应该默认具备判断能力：
-- 什么只值得一个 tiny fast fix
-- 什么应该继续观察
-- 什么已经成熟到值得进入 slow loop
-- 什么其实只是噪音
-
-### 基于 heartbeat 的晋升监控
-
-FastSlow Evo 还应该持续监控 fast loop 的产物，看它们是否正在成熟为 promote 候选。
-
-也就是 heartbeat 不只看消息或任务，还应该看：
-- 重复 incident
-- 重复 correction
-- 重复 win
-- tiny fix 的复用情况
-- 跨场景稳定性
-- regression 信号
-
-仓库里现在已经附带了 validation suite，用来验证这些判断是不是靠谱，而不是只会说概念。
-
-## 架构分层
-
-FastSlow Evo 的合理架构是：
-- **skill / 模型层**：负责语义判断
-- **references / 治理层**：负责晋升纪律、验证、回滚原则
-- **scripts / 工具层**：负责安装、初始化、落盘、候选生成、fallback
-
-脚本只是辅助，不是主脑。
-
-### 什么时候该用 helper 脚本
-
-脚本适合用来：
-- 安装或配置 runtime
-- 把已经判断过的有效 signal 落盘
-- 在 heartbeat / review 之后写出 promotion candidate
-- 做机械化测试与验证
-
-不要把脚本当成语义判断的替代品。
+Python helper 已经从默认设计里移除。
+现在的 FastSlow 是 protocol-first、model-driven。
 
 ---
 
-## 它适合解决什么问题？
+## 默认可用工作流
 
-### 对 Agent Builder 和重度用户
-- 减少重复错误，但不过度反应
-- 判断小修补该留在本地，还是升级为长期能力
-- 建立更安全的自我进化闭环
-- 把纠正和重复工作转化为可复用资产
+先读：
+- `references/runtime-core/minimal-usable-workflow.md`
 
-### 对办公 / 学习场景
-- 优化摘要、跟进、行动项提取
-- 避免“看起来很像回事但不可信”的输出
-- 改善笔记和主动回忆流程
-- 先创造立刻可见的小收益，再引入更重的自动化
+这份文件就是最短可用路径。
 
----
-
-## 仓库包含什么？
-
-- **Quick Adapt** 工作流
-- **Slow Promote** 工作流
-- **Fast/Slow Router**
-- **incident / correction / win 模板**
-- **starter guides 和 demo**
-- **validation 示例**
-- **脚本**：初始化 spec 树、记录问题、生成提案、推荐落地形式
+如果要看完整协议栈，再读：
+- `references/runtime-optional/openclaw-judgment-first.md`
+- `references/runtime-core/protocol-reading-order.md`
+- `references/runtime-branches/evidence-protocol.md`
+- `references/runtime-core/review-protocol.md`
+- `references/runtime-core/evaluation-rubric.md`
+- `references/runtime-core/review-output-format.md`
+- `references/runtime-branches/candidate-protocol.md`
+- `references/runtime-branches/heartbeat-protocol.md`
 
 ---
 
-## 目录结构
+## 在 OpenClaw 中怎么快速使用
 
-```text
-fastslow-evo/
-├── SKILL.md
-├── README.md
-├── README.zh-CN.md
-├── assets/
-├── references/
-├── scripts/
-└── specs/
-```
+### 新 correction / incident 出现时
+1. 按模板写一份 evidence markdown。
+2. 保留 full context 和 raw signal。
+3. 让 OpenClaw 按协议完成审查。
+4. 在以下状态中选一个：
+   - fast
+   - slow-candidate
+   - observe
+   - ignore
+   - reject
+5. 执行最小必要下一步。
 
----
+### 审查 candidate 时
+1. 先读 candidate protocol 和 checklist。
+2. 再读 linked evidence。
+3. 判断 candidate 应该：
+   - merge
+   - keep separate
+   - split
+   - supersede
+   - create
+   - no-action
+4. 按统一 review output format 写回判断。
 
-## 安装方式
-
-### 方式 1 —— 一键安装到 OpenClaw（推荐）
-
-```bash
-git clone https://github.com/keyonzeng/fastslow-evo.git && cd fastslow-evo && ./install.sh
-```
-
-它会自动：
-- 安装或就地确认 skill 位于 `~/.openclaw/workspace/skills/fastslow-evo`
-- 创建运行目录 `~/.openclaw/workspace/fastslow/`
-- 放好 incidents / corrections / wins / proposals / scorecards 模板
-- 把 FastSlow review block 追加到 `~/.openclaw/workspace/HEARTBEAT.md`
-
-然后验证：
-
-```bash
-openclaw skills info fastslow-evo
-```
-
-### 方式 2 —— 用 `npx skills add` 安装
-
-```bash
-npx skills add https://github.com/keyonzeng/fastslow-evo --skill fastslow-evo
-```
-
-它和下面这种写法是同一路子：
-
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
-
-### 方式 3 —— 在 OpenClaw 对话窗口直接安装
-
-如果你的 OpenClaw 支持在聊天里安装 skill，直接发这句话：
-
-```text
-安装 https://github.com/keyonzeng/fastslow-evo
-```
-
-### 方式 4 —— 手动安装到 OpenClaw
-
-```bash
-git clone https://github.com/keyonzeng/fastslow-evo.git ~/.openclaw/workspace/skills/fastslow-evo
-```
-
-### 方式 5 —— 只在本地拿文件和脚本
-
-```bash
-git clone https://github.com/keyonzeng/fastslow-evo.git my-fastslow-evo
-cd my-fastslow-evo
-```
-
-> 注意：只把文件 clone 到本地，不等于已经完整安装成 OpenClaw skill。
----
-
-## 快速开始
-
-建议先读：
-- `references/one-page-start.md`
-- `references/quick-adapt.md`
-- `references/fast-slow-router.md`
-
-然后拿一个真实问题，先跑一遍快环。
-
-### 4 行起跑路径
-
-```bash
-./install.sh
-python3 fastslow.py capture-text "这个回复太官方了，下次自然一点。"
-python3 fastslow.py route --latest
-python3 fastslow.py heartbeat --write-candidates
-```
-
-### 统一 runtime 命令
-
-这些命令是**工具层辅助命令**，不是 FastSlow Evo 的核心智能。
-它们用于：落盘、查看状态、验证闭环、生成候选。
-
-记录一个真实运行信号：
-
-```bash
-python3 fastslow.py capture incident "summary missed action items across two meetings" --gap validation_gap --recurrence 2 --context "meeting summaries"
-```
-
-直接从自然语言纠正中 capture：
-
-```bash
-python3 fastslow.py capture-text "这个回复太官方了，下次自然一点。"
-```
-
-对最新 runtime 信号做路由判断：
-
-```bash
-python3 fastslow.py route --latest
-```
-
-运行 heartbeat 风格的监控扫描，并写出候选：
-
-```bash
-python3 fastslow.py heartbeat --write-candidates
-```
-
-### 一句话 setup / 类聊天 setup
-
-命令行：
-
-```bash
-python3 fastslow.py setup
-python3 scripts/chat_setup.py "启用 FastSlow Evo heartbeat"
-```
-
-对应的自然语言意图：
-
-```text
-配置 FastSlow Evo
-启用 FastSlow Evo heartbeat
-记住这个修正
-以后这种情况这样做
-这个问题老是重复
-你判断该 fast 还是 slow
-```
+### 做 heartbeat review 时
+1. 先读 heartbeat protocol。
+2. 审查 recent evidence 和 current candidates。
+3. 只允许输出：
+   - no-action
+   - update existing candidate
+   - create one candidate
+   - split candidate
+   - reject candidate
 
 ---
 
-## 在 OpenClaw 里怎么用
+## 示例文件
 
-FastSlow Evo 不是一个单独启动的 app。
-它是一个 skill：当你要求 agent 通过 fast loop / slow loop 来改进时，它就会被调用。
+优先看这几个：
+- `references/examples/example-fast.md`
+- `references/examples/example-slow-candidate.md`
+- `references/examples/example-reject.md`
 
-### 最简单的 3 句触发话术
+这三个例子覆盖最高价值的三条路径：
+- 什么情况下只该做局部修补
+- 什么情况下该创建或更新一个 durable candidate
+- 什么情况下应该 reject / rollback 弱候选
 
-你在 OpenClaw 对话里直接说：
-
-1. **“这次走 fast loop，给我最小修复。”**
-2. **“这个模式一直重复，走 slow loop。”**
-3. **“你判断该走 fast 还是 slow，并直接执行。”**
-
-### 常见 fast loop 说法
-
-- “以后这种情况这样处理，走 fast loop。”
-- “这个摘要漏了 action item，走 fast loop 修掉。”
-- “这个回复太官方了，走 fast loop 调整。”
-- “你把工具结果读错了，给我最小修复。”
-
-### 常见 slow loop 说法
-
-- “这个问题已经反复出现，走 slow loop。”
-- “把这个重复修复晋升成长期规则。”
-- “这个模式已经稳定了，升级成长期能力。”
+旧的 worked examples 仍保留在 `references/` 下，供维护和深入理解时使用。
 
 ---
 
-## 常见使用场景
+## FastSlow Evo 不是什么
 
-### 1. 会议摘要总漏 action item
-
-你说：
-
-```text
-这个摘要漏了 action item，走 fast loop，给我最小修复。
-```
-
-预期结果：
-- 更紧的摘要模板
-- action-review checklist
-- 一个小型验证规则
-
-### 2. 回复太官方、太像 AI
-
-你说：
-
-```text
-这个回复太官方了，走 fast loop，让下次更自然。
-```
-
-预期结果：
-- 语气调整
-- 风格 memory rule
-- 模板微调
-
-### 3. 工具结果读错了
-
-你说：
-
-```text
-你把工具结果读错了，走 fast loop，给我最小修复。
-```
-
-预期结果：
-- claim-vs-evidence 检查
-- 小型验证增强
-- 下次总结更保守、更准
-
-### 4. 同类问题反复出现
-
-你说：
-
-```text
-这个问题已经重复出现很多次了，走 slow loop，把修复升级。
-```
-
-预期结果：
-- capability / behavior / validation spec
-- 长期 workflow rule
-- reusable skill 或脚本候选
-
-### 5. 你不知道该走哪条环
-
-你说：
-
-```text
-用 FastSlow Evo 判断这个该走 fast 还是 slow，然后直接执行。
-```
-
-预期结果：
-- router 判断
-- 给出 tiny fix 或 durable promotion 路径
-
----
-
-## 示例流程
-
-1. 抓一个真实问题  
-   例如：会议摘要漏掉了 action item。
-2. 路由判断  
-   如果它是局部、高频、低风险、下次容易验证的问题 → 走 **Quick Adapt**。
-3. 应用最小修复  
-   例如：增加 action-review checklist、收紧摘要模板、补一个小型验证规则。
-4. 复用  
-   如果后面几次摘要明显变好，就保留。
-5. 必要时慢速晋升  
-   如果这个模式跨上下文重复出现，且验证通过，再慢慢晋升。
-
----
-
-## 脚本
-
-### 初始化工作结构
-```bash
-python3 scripts/init_spec_tree.py ./my-agent-specs
-```
-
-### 记录问题或事件
-```bash
-python3 scripts/new_gap_entry.py "agent claimed tool success without evidence" --gap validation_gap --source review --task "automation run" --out ./my-agent-specs/evidence/incidents
-```
-
-### 生成晋升提案
-```bash
-python3 scripts/build_evolution_proposal.py "tool-faithfulness-hardening" --gap validation_gap --cases 2 --recurrence 2 --spec-type validation --artifact checklist --review L1 --out ./my-agent-specs/proposals
-```
-
-### 推荐落地形式
-```bash
-python3 scripts/recommend_materialization.py --gap validation_gap --recurrence 2 --risk medium
-```
-
----
-
-## 最适合谁？
-
-FastSlow Evo 具有一定可移植性，但尤其适合这类环境：
-- agent 被反复使用
-- 有持续上下文
-- 用户纠正信号明确
-- 存在重复工作流
-- 需要在不失控的前提下持续进化
-
----
-
-## 它不是什么？
-
-FastSlow Evo 不是：
-- 全自动自我修改引擎
-- 泛化办公 productivity 包装器
-- 没有产物的空泛反思系统
-- 把每个烦恼都升级成 skill 的借口
+它不是：
+- Python 规则引擎
+- 把每条记录都变成 candidate 的文件喷射器
+- 用弱证据硬做 promotion 的借口
+- 不受治理的自我修改系统
 
 ---
 
 ## 核心哲学
 
-> **局部适应足够时就快，长期晋升必须被证明时就慢。**
-
-这就是整套系统的核心。
-
----
-
-## 建议 GitHub Topics
-
-- ai-agents
-- self-improving-agents
-- agent-memory
-- agent-workflows
-- prompt-engineering
-- evaluation
-- openclaw
-- skill-design
-- reflective-systems
-- ai-productivity
-
----
-
-## 许可证
-
-MIT
+**局部适应足够时就快，长期晋升必须被证明时才慢。**

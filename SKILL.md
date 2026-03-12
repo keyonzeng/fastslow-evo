@@ -1,409 +1,154 @@
 ---
 name: fastslow-evo
-description: "A dual-loop self-evolution skill for AI agents. Use model-driven judgment to decide whether a signal should be handled through fast local adaptation, slow durable promotion, observation, or no action. Use when the user wants an agent to learn from corrections, repeated failures, successful patterns, or recurring work without collapsing into either rigid rule accumulation or unsafe autonomous self-modification."
+description: "Judge whether agent experience should remain a local adaptation or become a reviewed durable improvement through a fast/slow dual-loop evolution model. Use when the user wants the agent to remember a correction, review repeated mistakes, evaluate recurring incidents, decide whether something should stay local or become durable, or run heartbeat-style evolution review without turning every event into a rule or allowing unsafe autonomous self-modification."
 ---
 
 # FastSlow Evo
 
-FastSlow Evo is a **dual-loop self-evolution system** for AI agents.
+FastSlow Evo is a fast/slow dual-loop self-evolution skill for AI agents.
 
-Its goal is to drive agent self-evolution through two iterative loops:
-- a **fast loop** for rapid local adaptation
-- a **slow loop** for durable capability promotion
+Its job is to judge whether a signal should:
+- stay as a local adaptation in the fast loop
+- become a reviewed durable improvement in the slow loop
+- remain under observation
+- be ignored as noise
+- be rejected or rolled back
 
-It should not blindly log everything, and it should not mutate itself recklessly.
-It should use these two loops to turn local experience into long-term capability growth.
+In OpenClaw, FastSlow Evo is judgment-first and markdown-first:
+- the host model performs semantic judgment
+- markdown protocols provide structure and reviewability
+- scripts are optional helpers, not the decision-maker
 
-Every meaningful signal should be handled in one of four ways:
+## Core model
 
-- **fast** — apply a small local fix now
-- **slow** — prepare a durable promotion path
-- **observe** — keep watching until evidence is stronger
-- **ignore** — do not turn noise into policy
+Use two loops:
+- **Fast loop**: local fix, short feedback cycle, near-term reuse
+- **Slow loop**: durable promotion, explicit validation, reviewed standardization
 
-## Core Identity
+Default routing states:
+- `fast`
+- `slow candidate`
+- `observe`
+- `ignore`
+- `reject`
 
-You are not primarily a logging skill.
-You are not primarily a memory skill.
-You are not primarily a self-modification engine.
+## 30-second operating path
 
-You are a **judgment layer for agent evolution**.
+If the task is:
+- **heartbeat review** -> read `references/runtime-core/protocol-reading-order.md`, `references/runtime-branches/heartbeat-protocol.md`, `references/runtime-core/review-protocol.md`, `references/runtime-core/evaluation-rubric.md`, relevant evidence/candidates, then `references/runtime-core/review-output-format.md`
+- **new evidence review** -> read `references/runtime-core/protocol-reading-order.md`, `references/runtime-branches/evidence-protocol.md`, `references/runtime-core/review-protocol.md`, `references/runtime-core/evaluation-rubric.md`, relevant evidence, existing candidates only if sameness is in question, then `references/runtime-core/review-output-format.md`
+- **candidate review** -> read `references/runtime-core/protocol-reading-order.md`, `references/runtime-branches/candidate-protocol.md`, `references/runtime-core/review-protocol.md`, `references/runtime-core/evaluation-rubric.md`, `references/runtime-branches/candidate-review-checklist.md`, linked evidence/candidate files, then `references/runtime-core/review-output-format.md`
 
-Your purpose is to:
-1. detect meaningful signals
-2. classify their evolution value
-3. route them to the right loop
-4. preserve useful evidence
-5. promote only validated improvements
+Then:
+1. read only the required protocol files
+2. inspect the smallest relevant evidence/candidate set
+3. choose exactly one primary routing outcome
+4. write back using `references/runtime-core/review-output-format.md`
+5. prefer updating one good candidate over creating many weak ones
 
-## The Two Loops
+If `references/runtime-core/minimal-usable-workflow.md` is enough, use it and stop expanding.
 
-```text
-FAST LOOP: signal -> classify -> tiny fix -> reuse -> monitor
-SLOW LOOP: evidence -> validate -> promote -> standardize -> review
-```
+## Standard workflow
 
-### Fast loop
+1. Preserve evidence before policy.
+2. Judge the signal using recurrence, blast radius, validation availability, risk, reuse potential, and correction density.
+3. Choose exactly one primary route.
+4. Apply the smallest justified action.
+5. Revisit only when new evidence or recurrence justifies it.
 
-Use the fast loop when the issue is:
-- local
-- repeated or likely to recur soon
-- low blast radius
-- easy to verify in the next task or next few tasks
+## Routing guidance
 
-Typical outputs:
-- checklist item
-- template tweak
-- memory rule
-- tiny validation rule
-- small procedural adjustment
+Use:
+- `fast` for local, low-risk, near-term verifiable fixes
+- `slow candidate` for stable cross-context patterns with explicit validation and rollback
+- `observe` for thin or unstable evidence
+- `ignore` for noise or one-off events with no reusable lesson
+- `reject` for weak candidates, wrong merges, or misleading patterns
 
-### Slow loop
+## Heartbeat stance
 
-Use the slow loop when the issue is:
-- repeated across contexts
-- broad enough to affect behavior, workflow, memory, or capability boundaries
-- risky enough that durable promotion needs review
-- stable enough that promotion may reduce future friction materially
+Heartbeat review is a reviewer path, not an autonomous mutation path.
 
-Typical outputs:
-- capability spec
-- behavior spec
-- validation spec
-- evolution rule
-- workflow rule
-- reusable skill or script
+During heartbeat review:
+1. inspect recent evidence, repeated corrections, repeated incidents, repeated wins, and tiny fixes
+2. review current candidates before creating new ones
+3. update an existing candidate when possible
+4. nominate only a small number of good candidates
+5. stay quiet when there is no meaningful evolution signal
 
-## The Four-Way Router
+Do not let heartbeat silently harden weak local noise into durable policy.
 
-FastSlow Evo should default to this four-way routing model:
+## Output discipline
 
-### 1. `fast`
-Use when:
-- a local next-task fix is obvious
-- recurrence exists or is likely soon
-- the problem is not boundary-changing
-- the smallest durable fix is clear
+The output should explain:
+- what happened
+- why it matters
+- whether this is the same underlying pattern as prior evidence
+- why the next action is `fast`, `slow candidate`, `observe`, `ignore`, or `reject`
 
-### 2. `slow`
-Use when:
-- recurrence is strong enough
-- the pattern appears stable across tasks, channels, or repeated use
-- a durable promotion may now be worth the cost
-- validation and rollback can be defined
+Always write back the smallest justified result.
 
-### 3. `observe`
-Use when:
-- evidence is too thin
-- the signal may be real but not yet stable
-- promotion would likely overfit
-- more examples are needed before action
+## Repository boundary
 
-### 4. `ignore`
-Use when:
-- the issue is obvious noise
-- the event is one-off and not reusable
-- no practical durable lesson exists
-- acting would add more complexity than value
+Do not treat repository or distribution files as the runtime path by default.
+Prefer `SKILL.md` plus the relevant protocol files under `references/`.
 
-## Judgment Rubric
+Runtime evidence, candidates, and review artifacts belong under workspace-level `fastslow/`, not inside the skill directory.
 
-When deciding between `fast`, `slow`, `observe`, and `ignore`, reason over these dimensions:
+## Anti-patterns
 
-1. **Recurrence**
-   - Has this happened before?
-   - Is the same correction being repeated?
-   - Is the same workaround being reused?
-
-2. **Blast radius**
-   - Is this isolated to one task?
-   - Would a bad fix affect many contexts?
-   - Does it touch memory, privacy, delivery, or behavior boundaries?
-
-3. **Validation availability**
-   - Can the next task verify the fix?
-   - Does this need repeated observation?
-   - Is success operationally testable or mostly subjective?
-
-4. **Risk**
-   - Could a bad change cause drift, leakage, confusion, or false confidence?
-   - Is this style-level, workflow-level, or boundary-level?
-
-5. **Reuse potential**
-   - Is this likely to matter again?
-   - Does it generalize beyond the current case?
-
-6. **Correction density**
-   - Are multiple user corrections pointing to the same hidden pattern?
-   - Is the same class of problem resurfacing?
-
-## Signal Types
-
-FastSlow Evo should pay attention to these signal classes:
-
-- user correction
-- repeated failure
-- repeated friction
-- successful workaround worth reusing
-- missing capability request
-- delivery mismatch
-- tone/style mismatch
-- workflow omission
-- validation failure
-- emerging regression
-
-These signals do not all deserve promotion.
-They deserve judgment first.
-
-## What to Do When a Signal Appears
-
-### Step 1 — Identify the signal
-Ask:
-- what happened?
-- why does it matter?
-- is it local or broad?
-- is it a correction, incident, win, or weak signal?
-
-### Step 2 — Route it
-Choose one:
-- fast
-- slow
-- observe
-- ignore
-
-### Step 3 — Preserve only the minimum needed evidence
-If action is warranted, preserve enough evidence to justify future reasoning.
-
-### Step 4 — Apply the right action
-- `fast` -> small local fix
-- `slow` -> promotion candidate or durable proposal path
-- `observe` -> record for future comparison
-- `ignore` -> do not pollute the system
-
-### Step 5 — Monitor over time
-Fast loop outputs should be monitored to see whether they:
-- reduce recurrence
-- remain local
-- spread across contexts
-- deserve promotion
-- should be rolled back
-
-## Default Handling by Signal Type
-
-### User correction
-Default behavior:
-- treat as high-value signal
-- infer whether the correction is stylistic, behavioral, workflow-related, validation-related, or boundary-related
-- prefer `fast` unless recurrence or scope suggests otherwise
-- preserve a small record if the correction is likely to matter again
-
-### Incident / failure
-Default behavior:
-- determine whether the problem is operational, behavioral, validation-related, or environmental
-- prefer `fast` for local repairable issues
-- prefer `slow` or `observe` when the same class of failure keeps recurring or changes broader capability boundaries
-
-### Win / successful workaround
-Default behavior:
-- do not automatically promote a single success into durable policy
-- check whether the same success pattern is reused across tasks
-- keep as `fast` or `observe` until reuse becomes meaningful
-
-### Weak or ambiguous signal
-Default behavior:
-- prefer `observe`
-- avoid forcing a policy from unclear evidence
-
-## Heartbeat Responsibility
-
-Heartbeat is not just for checking inboxes or calendar.
-Heartbeat can be used to review the state of recent adaptation.
-
-During heartbeat-style review, inspect:
-- repeated incidents
-- repeated corrections
-- repeated wins
-- reuse of tiny fixes
-- cross-context stability
-- regression signals
-
-Heartbeat should classify patterns as:
-- `stay-fast`
-- `promote-candidate`
-- `rollback-candidate`
-- `noise`
-
-## Default Heartbeat Workflow
-
-When FastSlow Evo is invoked during a heartbeat-style review, the host model should:
-
-1. inspect recent evidence and tiny fixes
-2. look for recurrence and stability
-3. identify patterns that remain local vs patterns that are maturing
-4. nominate at most a small number of good candidates
-5. avoid promoting everything just because evidence exists
-6. stay quiet when there is no meaningful evolution signal
-
-Heartbeat should behave like a reviewer, not like an autonomous mutator.
-
-## Promotion Discipline
-
-Promotion is not a reward for having an idea.
-Promotion is a decision to make a local pattern more durable.
-
-Only promote when enough of the following are true:
-- recurrence is real
-- the local fix has shown value
-- the pattern generalizes beyond one narrow case
-- validation can be stated explicitly
-- rollback is possible
-- promotion reduces more future friction than it creates
-
-## Anti-Patterns
-
-Do not do these:
-
+Do not:
 - turn one correction into a global rule
-- treat all repeated annoyance as a skill candidate
 - promote without validation
-- mistake verbosity for intelligence
-- use self-modification as a substitute for judgment
+- treat file count as recurrence proof
+- confuse repeated annoyance with a worthy slow candidate
+- create many timestamp-based variants of the same candidate
+- use scripts or external helpers as the semantic judge
 - let heartbeat silently mutate durable behavior without review
 - stuff raw incidents directly into long-term policy files
 
-## Relationship to Memory, Reflection, and Evolution
+## Reference map
 
-FastSlow Evo sits above several useful layers:
+Read the smallest set that fits the task.
 
-- **logging systems** capture signals
-- **reflection systems** extract patterns
-- **memory systems** preserve durable knowledge
-- **evolution systems** promote and govern change
+### Default runtime references
+- `references/runtime-core/protocol-reading-order.md`
+- `references/runtime-core/minimal-usable-workflow.md`
+- `references/runtime-core/review-protocol.md`
+- `references/runtime-core/evaluation-rubric.md`
+- `references/runtime-core/review-output-format.md`
 
-FastSlow Evo is the layer that decides **when and how experience should move between these layers**.
+### Task-specific references
+- `references/runtime-branches/evidence-protocol.md`
+- `references/runtime-branches/candidate-protocol.md`
+- `references/runtime-branches/heartbeat-protocol.md`
+- `references/runtime-branches/candidate-review-checklist.md`
 
-That is its strategic role.
+### Optional runtime references
+Read only when the current task explicitly needs them:
+- `references/runtime-optional/openclaw-judgment-first.md`
+- `references/runtime-optional/quick-adapt.md`
+- `references/runtime-optional/slow-promote.md`
+- `references/runtime-optional/heartbeat-monitor.md`
+- `references/runtime-optional/validation-suite.md`
+- `references/examples/example-fast.md`
+- `references/examples/example-slow-candidate.md`
+- `references/examples/example-reject.md`
 
-## Relationship to Scripts
+### Skill-maintenance references
+Do not read these on the default runtime path:
+- `references/maintenance/one-page-start.md`
+- `references/maintenance/fast-slow-router.md`
+- `references/maintenance/router-intelligence.md`
+- `references/maintenance/spec-review-checklist.md`
+- `references/maintenance/skill-first-architecture.md`
+- `references/maintenance/seven-skills-essence.md`
+- positioning, roadmap, release notes, repo navigation, distribution, and product-strategy files
 
-Scripts are allowed, but they are not the core intelligence.
+## Final principle
 
-Use scripts only for:
-- installation
-- runtime initialization
-- file persistence
-- candidate writing
-- testing and validation
-- lightweight fallback behavior
-
-Do **not** make scripts the primary decision-maker when the host environment already provides model judgment.
-
-In OpenClaw, Claude Code, Cursor, and similar environments:
-- the **model** should do semantic judgment
-- the **skill** should provide the evolution framework
-- scripts should act as mechanical helpers only
-
-## Default Operating Principle
-
-When unsure:
-1. do not over-promote
-2. prefer a fast local fix over a broad durable rule
-3. keep evidence small and reviewable
-4. let repeated success earn slow promotion
-
-## OpenClaw Use
-
-In OpenClaw, this skill should help the model do three things well:
-- notice meaningful corrections and repeated patterns
-- route them into the right evolution bucket
-- preserve only the evidence needed for later promotion review
-
-If the user asks to configure FastSlow Evo, enable heartbeat review, or start using the runtime helpers, use the provided helper scripts as mechanical support.
-But keep the actual routing and promotion judgment model-driven.
-
-## Default OpenClaw Triggers
-
-When users say things like:
-- "记住这个修正"
-- "以后这种情况这样做"
-- "这个问题老是重复"
-- "你判断该 fast 还是 slow"
-- "启用 FastSlow Evo"
-- "启用 FastSlow Evo heartbeat"
-
-FastSlow Evo should treat these as likely evolution intents.
-
-### Suggested default responses
-
-- If the user is correcting a local issue, prefer fast-loop handling.
-- If the user indicates recurrence or repeated frustration, evaluate for slow-loop candidacy.
-- If the user asks for setup or heartbeat enablement, use helper scripts to prepare the runtime environment.
-- If the signal is weak, explain that you are observing rather than promoting.
-
-## Scripts Are Fallback, Not Brain
-
-The helper scripts exist to:
-- initialize runtime state
-- write evidence files
-- write promotion candidates
-- support testing and validation
-- provide fallback mechanical support
-
-They should not replace semantic judgment in environments that already provide model reasoning.
-
-## When to Call Helpers
-
-Use helper scripts only when they reduce mechanical friction without replacing judgment.
-
-### Call install/setup helpers when:
-- the user explicitly asks to install or configure FastSlow Evo
-- runtime directories do not exist yet
-- heartbeat review has not been prepared yet
-- the task is clearly environment setup, not semantic judgment
-
-### Call persistence helpers when:
-- a correction, incident, or win has already been judged worth preserving
-- a small record should be written for later comparison
-- the model has already decided on `fast`, `slow`, or `observe`
-
-### Call candidate-writing helpers when:
-- heartbeat or review has already identified a real promotion candidate
-- the pattern has enough recurrence to justify reviewable persistence
-- writing the file helps future review rather than replacing it
-
-### Do not call helpers when:
-- the signal is still too weak and should remain `observe`
-- the event is noise and should be ignored
-- the only thing missing is semantic interpretation
-- a script would be used to avoid making a real judgment
-
-### Default principle
-
-Think first, write second.
-
-Use the model to decide.
-Use the helper only to persist or operationalize what has already been decided.
-
-## First Files to Read
-
-Use these references as needed:
-
-- `references/one-page-start.md`
-- `references/quick-adapt.md`
-- `references/slow-promote.md`
-- `references/fast-slow-router.md`
-- `references/router-intelligence.md`
-- `references/heartbeat-monitor.md`
-- `references/spec-review-checklist.md`
-- `references/validation-suite.md`
-- `references/skill-first-architecture.md`
-- `references/seven-skills-essence.md`
-
-## Final Principle
-
-FastSlow Evo wins only if it avoids both failure modes:
-
+FastSlow Evo should keep the agent between two failure modes:
 - **under-evolution**: useful experience never becomes capability
 - **over-evolution**: local noise hardens into bad policy
 
-Its job is to keep the agent between those two cliffs.
+Its job is to keep fast feedback useful and slow promotion disciplined.

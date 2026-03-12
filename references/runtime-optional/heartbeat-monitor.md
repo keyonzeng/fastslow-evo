@@ -22,7 +22,7 @@ Check whether recent tiny fixes exist, such as:
 - new template tweaks
 - new memory rules
 - tiny validation rules
-- tiny helper scripts
+- tiny local fixes expressed as markdown rules, checklists, or templates
 
 ### 3. Recurrence trends
 Ask:

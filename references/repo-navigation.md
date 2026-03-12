@@ -8,9 +8,11 @@ These files define what FastSlow Evo fundamentally is:
 - `SKILL.md`
 - `README.md`
 - `README.zh-CN.md`
-- `references/skill-first-architecture.md`
-- `references/seven-skills-essence.md`
-- `references/one-page-start.md`
+- `references/runtime-optional/openclaw-judgment-first.md`
+- `references/maintenance/skill-first-architecture.md`
+- `references/maintenance/seven-skills-essence.md`
+- `references/maintenance/one-page-start.md`
+- `references/runtime-core/minimal-usable-workflow.md`
 
 These should answer:
 - what FastSlow Evo is
@@ -21,55 +23,48 @@ These should answer:
 ## Governance Path
 
 These files define review and promotion discipline:
-- `references/quick-adapt.md`
-- `references/slow-promote.md`
-- `references/fast-slow-router.md`
-- `references/router-intelligence.md`
-- `references/heartbeat-monitor.md`
-- `references/spec-review-checklist.md`
-- `references/validation-suite.md`
+- `references/runtime-branches/evidence-protocol.md`
+- `references/runtime-core/review-protocol.md`
+- `references/runtime-core/evaluation-rubric.md`
+- `references/runtime-core/review-output-format.md`
+- `references/runtime-branches/candidate-protocol.md`
+- `references/runtime-branches/candidate-review-checklist.md`
+- `references/runtime-branches/heartbeat-protocol.md`
+- `references/maintenance/spec-review-checklist.md`
+- `references/runtime-optional/validation-suite.md`
 
 These should answer:
-- how to route signals
-- how to review recurrence
+- how to preserve evidence
+- how to judge sameness and recurrence
+- how to review convergence
 - when to promote
-- when to roll back
+- when to split, reject, or roll back
 
-## Helper Path
+## Example Path
 
-These files and scripts support operation but are not the core intelligence:
+These files show how FastSlow should actually be used:
+- `references/examples/example-meeting-summary.md`
+- `references/examples/example-tone-correction.md`
+- `references/examples/example-split-case.md`
+
+## Utility Path
+
+These files support operation without carrying the intelligence:
 - `install.sh`
-- `fastslow.py`
-- `scripts/install_openclaw.py`
-- `scripts/setup_runtime.py`
-- `scripts/capture_runtime.py`
-- `scripts/capture_from_text.py`
-- `scripts/route_runtime.py`
-- `scripts/heartbeat_runtime.py`
-- `scripts/build_promotion_candidate.py`
+- markdown templates in `assets/`
+- runtime templates copied into `~/.openclaw/workspace/fastslow/`
 
 These exist to:
-- install
-- initialize runtime state
-- persist signals
-- write candidate files
-- validate and debug
-
-## Fallback / Test Path
-
-These are useful, but should not be mistaken for the main product identity:
-- helper scripts that simulate routing
-- sample evidence files
-- validation fixtures
-- synthetic benchmark cases
-
-If someone starts explaining FastSlow Evo mainly through these files, they are probably drifting away from the skill's real center of gravity.
+- install the skill
+- prepare the runtime folders
+- keep evidence, candidates, and durable specs separate
 
 ## Rule of Interpretation
 
 When describing the project:
 1. start from the skill
 2. then explain the governance model
-3. only then mention the helper scripts
+3. then show the usable workflow and examples
+4. only then mention installation and templates
 
-Do not present the helper layer as the product itself.
+Do not present installation or file mechanics as the product itself.

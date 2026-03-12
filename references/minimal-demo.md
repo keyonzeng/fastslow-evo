@@ -34,7 +34,7 @@ If recurrence continues and validation is deterministic:
 ## 4. Review
 
 Run through:
-- `references/spec-review-checklist.md`
+- `references/maintenance/spec-review-checklist.md`
 
 ## 5. Measure
 

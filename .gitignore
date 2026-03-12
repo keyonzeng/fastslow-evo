@@ -1,0 +1,15 @@
+# Local/runtime artifacts should not live inside the skill repo by default
+
+# Python
+__pycache__/
+*.pyc
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# FastSlow runtime data belongs under workspace/fastslow/, not inside this skill
+runtime/
+.tmp/

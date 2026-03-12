@@ -8,7 +8,7 @@ FastSlow Evo is now packaged as a usable skill with:
 - quick-adapt and slow-promote workflows
 - starter guides
 - templates
-- helper scripts
+- protocol files and markdown review workflow
 - example specs
 - penetration strategy notes
 - a skill-first / model-first architecture
@@ -26,9 +26,9 @@ FastSlow Evo helps an agent improve quickly where local adaptation is enough, an
 ## Recommended first use
 
 Open:
-- `references/one-page-start.md`
-- `references/quick-adapt.md`
-- `references/fast-slow-router.md`
-- `references/skill-first-architecture.md`
+- `references/maintenance/one-page-start.md`
+- `references/runtime-optional/quick-adapt.md`
+- `references/maintenance/fast-slow-router.md`
+- `references/maintenance/skill-first-architecture.md`
 
 Then use one real signal to exercise the fast loop and the router.

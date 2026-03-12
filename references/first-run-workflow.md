@@ -54,7 +54,7 @@ Use any lightweight way to preserve:
 - corrections
 - wins
 
-Templates and helper scripts are fine, but they are support tools, not the point of the workflow.
+Templates and markdown protocols are fine, but they are support structures, not the point of the workflow.
 
 ## Step 5 — Draft only small spec deltas
 
@@ -64,7 +64,7 @@ During the first iteration window, prefer:
 - validation spec
 
 Avoid starting with:
-- heavy scripts
+- heavy automation jumps
 - new skill creation
 - code/config mutation
 
