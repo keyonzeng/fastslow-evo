@@ -18,19 +18,20 @@ Use the evidence template and preserve:
 
 ### Step 2
 Read in this order:
-1. `references/runtime-optional/openclaw-judgment-first.md`
-2. `references/runtime-branches/evidence-protocol.md`
-3. `references/runtime-core/review-protocol.md`
-4. `references/runtime-core/evaluation-rubric.md`
-5. the new evidence file
-6. existing candidates only if sameness is in question
-7. `references/runtime-core/review-output-format.md`
+1. `references/runtime-branches/evidence-protocol.md`
+2. `references/runtime-core/review-protocol.md`
+3. `references/runtime-core/evaluation-rubric.md`
+4. the new evidence file
+5. existing candidates only if sameness is in question
+6. `references/runtime-core/review-output-format.md`
+
+Optional: read `references/runtime-optional/openclaw-judgment-first.md` only if you need the broader OpenClaw stance.
 
 ### Step 3
 Have the OpenClaw host model produce a review result.
 Possible states:
 - fast
-- slow-candidate
+- slow candidate
 - observe
 - ignore
 - reject
@@ -38,7 +39,7 @@ Possible states:
 ### Step 4
 Apply the smallest justified next step:
 - fast -> local checklist / template / memory rule
-- slow-candidate -> create or update one candidate markdown file
+- slow candidate -> create or update one candidate markdown file
 - observe -> keep evidence only
 - ignore -> no further write
 - reject -> close or correct a weak candidate
@@ -47,14 +48,15 @@ Apply the smallest justified next step:
 
 ### Step 1
 Read in this order:
-1. `references/runtime-optional/openclaw-judgment-first.md`
-2. `references/runtime-branches/candidate-protocol.md`
-3. `references/runtime-core/review-protocol.md`
-4. `references/runtime-core/evaluation-rubric.md`
-5. `references/runtime-branches/candidate-review-checklist.md`
-6. linked evidence files
-7. candidate file
-8. `references/runtime-core/review-output-format.md`
+1. `references/runtime-branches/candidate-protocol.md`
+2. `references/runtime-core/review-protocol.md`
+3. `references/runtime-core/evaluation-rubric.md`
+4. `references/runtime-branches/candidate-review-checklist.md`
+5. linked evidence files
+6. candidate file
+7. `references/runtime-core/review-output-format.md`
+
+Optional: read `references/runtime-optional/openclaw-judgment-first.md` only if you need the broader OpenClaw stance.
 
 ### Step 2
 Decide one convergence action:
@@ -68,7 +70,7 @@ Decide one convergence action:
 ### Step 3
 Decide one state:
 - fast
-- slow-candidate
+- slow candidate
 - observe
 - ignore
 - reject
@@ -76,13 +78,14 @@ Decide one state:
 ## Case 3: Heartbeat review
 
 Read:
-1. `references/runtime-optional/openclaw-judgment-first.md`
-2. `references/runtime-branches/heartbeat-protocol.md`
-3. `references/runtime-core/review-protocol.md`
-4. `references/runtime-core/evaluation-rubric.md`
-5. recent evidence
-6. current candidates
-7. `references/runtime-core/review-output-format.md`
+1. `references/runtime-branches/heartbeat-protocol.md`
+2. `references/runtime-core/review-protocol.md`
+3. `references/runtime-core/evaluation-rubric.md`
+4. recent evidence
+5. current candidates
+6. `references/runtime-core/review-output-format.md`
+
+Optional: read `references/runtime-optional/openclaw-judgment-first.md` only if you need the broader OpenClaw stance.
 
 Allowed outputs:
 - no-action
